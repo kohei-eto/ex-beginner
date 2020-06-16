@@ -1,9 +1,11 @@
 package com.example.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.domain.User;
 import com.example.form.UserForm;
 
 @Controller
@@ -20,7 +22,12 @@ public class Exam04Controller {
 		return "exam04";
 	}
 	@RequestMapping("/output")
-	public String output() {
+	public String output(UserForm userForm,Model model) {
+		User user = new User();
+		user.setName(userForm.getName());
+		user.setAge(Integer.parseInt(userForm.getAge()));
+		user.setComment(userForm.getComment());
+		model.addAttribute(user);
 		return "exam04-result";
 	}
 	
