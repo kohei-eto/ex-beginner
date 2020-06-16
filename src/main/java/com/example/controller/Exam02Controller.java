@@ -20,7 +20,7 @@ public class Exam02Controller {
 		session.setAttribute("num1", num1);
 		session.setAttribute("num2", num2);
 		session.setAttribute("answer", num1+num2);
-		return "exan02-result";
+		return "exam02-result";
 	}
 	@RequestMapping("/toNextPage")
 	public String toNextPage() {
