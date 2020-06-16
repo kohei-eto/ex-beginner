@@ -18,9 +18,13 @@ public class Exam03Controller {
 	}
 	@RequestMapping("/app")
 	public String app(String price1,String price2,String price3) {
-		ap.setAttribute("price1", price1);
-		ap.setAttribute("price2", price2);
-		ap.setAttribute("price3", price3);
+		
+		Integer a = Integer.parseInt(price1);
+		Integer b = Integer.parseInt(price2);
+		Integer c = Integer.parseInt(price3);
+		
+		ap.setAttribute("total1", a+b+c);
+		ap.setAttribute("total2", ((a+b+c)*1.01));
 		return "exam03-result";
 	}
 	
