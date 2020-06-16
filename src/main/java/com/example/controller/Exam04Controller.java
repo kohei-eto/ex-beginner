@@ -2,14 +2,16 @@ package com.example.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.domain.User;
 import com.example.form.UserForm;
+import com.sun.xml.internal.org.jvnet.staxex.NamespaceContextEx.Binding;
 
 @Controller
-@RequestMapping("/exam4")
+@RequestMapping("/exam04")
 public class Exam04Controller {
 	
 	@ModelAttribute
@@ -21,14 +23,20 @@ public class Exam04Controller {
 	public String index() {
 		return "exam04";
 	}
+	
 	@RequestMapping("/output")
-	public String output(UserForm userForm,Model model) {
-		User user = new User();
-		user.setName(userForm.getName());
-		user.setAge(Integer.parseInt(userForm.getAge()));
-		user.setComment(userForm.getComment());
-		model.addAttribute(user);
+	public String output(
+			@Validated UserForm userForm
+			,BindingResult result
+			,Model model
+			) {
+		
+		if(result.hasErrors()) {
+			return "exam04";
+		} 
 		return "exam04-result";
+		
+		
 	}
 	
 	
