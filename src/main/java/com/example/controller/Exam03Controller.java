@@ -1,5 +1,7 @@
 package com.example.controller;
 
+import java.text.DecimalFormat;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,16 +19,12 @@ public class Exam03Controller {
 		return "exam03";
 	}
 	@RequestMapping("/app")
-	public String app(String price1,String price2,String price3) {
+	public String app(Integer price1,Integer price2,Integer price3) {
 		
-		Integer a = Integer.parseInt(price1);
-		Integer b = Integer.parseInt(price2);
-		Integer c = Integer.parseInt(price3);
+		ap.setAttribute("total1", price1+price2+price3);
+		ap.setAttribute("total2", (price1+price2+price3)*1.10);
 		
-		ap.setAttribute("total1", a+b+c);
-		ap.setAttribute("total2", ((a+b+c)*1.01));
 		return "exam03-result";
 	}
-	
 	
 }
